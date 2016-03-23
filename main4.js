@@ -3,15 +3,24 @@ var id = function(id){
 };
 
 var Name = React.createClass({
-    render: function(){
 
-        return <h2 style={{color:"blue"}}>{this.props.name}</h2>;
+    clickEvt: function(e){
+        console.log(this.props.name);
+    },
+
+    render: function(){
+        return <h2 onClick={this.clickEvt} style={{color:"blue"}}>{this.props.name}</h2>;
     }
 });
 
 var Link = React.createClass({
+
+    clickEvt: function(e){
+       console.log(this.props.link);
+    },
+
     render: function(){
-        return <h3 style={{color:"green"}}>{this.props.link}</h3>;
+        return <h3 onClick={this.clickEvt} style={{color:"green"}}>{this.props.link}</h3>;
     }
 });
 
@@ -50,17 +59,15 @@ var WebSite = React.createClass({
             <input type="text" id="name" />
             <br/>
             <input type="text" id="link" />
-            cc
+            <Name name={this.state.name} />
             <Link link={this.state.link} />
             <button onClick={this.changeMsg}>更改</button>
         </div>;
     }
 });
 
-var a = <WebSite name="1" link="2"/>;
-
 ReactDOM.render(
-    a
+    <WebSite name="1" link="2"/>
     ,
     id("box")
 );
